@@ -1,20 +1,25 @@
-name : cpprun
+name: cpprun
+
 on:
   push:
     branches:
-      -main
-    pull_request:
-      branches:
-        -main
+      - main  # 修正了 -main 为 - main
+  pull_request:
+    branches:
+      - main  # 修正了 -main 为 - main
+
 jobs:
   build:
-    runs-on:ubuntu-latest
+    runs-on: ubuntu-latest  # 修正了冒号后缺少空格
     steps:
-      - name:Checkout code
-        uses:actions/checkout@v2
-      - name:install g++
-        run:sudo apt install g++
-      - name:compile
-        run:g++ -g main.cpp -o main -std=c++17
-      - name:run
-        run:./main
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install g++
+        run: sudo apt install g++ -y  # 加了 -y 以自动确认安装
+
+      - name: Compile
+        run: g++ -g main.cpp -o main -std=c++17
+
+      - name: Run
+        run: ./main
